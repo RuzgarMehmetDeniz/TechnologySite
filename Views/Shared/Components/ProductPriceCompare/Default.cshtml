@@ -1,0 +1,65 @@
+﻿@model ProductPriceCompareVM
+
+<div class="row mt-4">
+
+    <!-- EN UCUZ 5 -->
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-header bg-success text-white">
+                En Ucuz 5 Ürün
+            </div>
+            <div class="card-body p-0">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Ürün</th>
+                            <th class="text-end">Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CheapestProducts)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td class="text-end text-success">
+                                    ₺@item.Price.ToString("N2")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- EN PAHALI 5 -->
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-header bg-danger text-white">
+                En Pahalı 5 Ürün
+            </div>
+            <div class="card-body p-0">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Ürün</th>
+                            <th class="text-end">Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.MostExpensiveProducts)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td class="text-end text-danger">
+                                    ₺@item.Price.ToString("N2")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

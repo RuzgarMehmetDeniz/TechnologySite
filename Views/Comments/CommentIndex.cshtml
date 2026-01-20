@@ -1,0 +1,30 @@
+﻿﻿﻿@{
+Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+	 @await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+
+    @await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+
+
+<body>
+
+	<!-- About-->
+	@await Component.InvokeAsync("_UserLayoutDefaultAboutComponentPartial")
+
+	<!-- Footer-->
+	@await Component.InvokeAsync("_UserLayoutDefaultFooterComponentPartial")
+
+	<!-- Bootstrap core JS-->
+	@await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+
+
+</body>
+</html>
+<style>
+	body {
+		background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+	}
+
+</style>

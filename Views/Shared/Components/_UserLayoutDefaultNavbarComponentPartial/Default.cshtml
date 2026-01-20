@@ -1,0 +1,98 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
+
+    <div class="container px-4 px-lg-5">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/Default/Index/">Anasayfa</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Category/CategoryList/">Kategoriler</a></li>
+                <li class="nav-item"><a class="nav-link" id="allProductsBtn" href="/Product/ProductList/">Tüm Ürünler</a></li>
+                <li class="nav-item"><a class="nav-link" href="/About/AboutPage/">Hakkımızda</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Team/TeamIndex/">Destek Ekibimiz</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Comments/CommentIndex/">Yorumlar</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Contact/Index/">İletişim</a></li>
+                
+            </ul>
+            <form class="d-flex align-items-center">
+                <button class="btn btn-outline-dark" type="button"
+                        onclick="location.href='@Url.Action("Index", "Cart")'">
+                    <i class="bi-cart-fill me-1"></i>
+                    Sepet
+                    @await Component.InvokeAsync("_UserLayoutCartListComponentPartial")
+                </button>
+
+                <!-- Giriş Yap Butonu -->
+                <a class="btn btn-outline-dark ms-2" href="/AdminLayout/Index/">
+                    <i class="bi-person-fill me-1"></i>
+                    Giriş Yap
+                </a>
+            </form>
+
+        </div>
+    </div>
+</nav>
+<style>
+    .btn-outline-dark:hover {
+        background-color: #343a40;
+        color: #fff;
+        border-color: #343a40;
+    }
+
+    .navbar {
+        background: linear-gradient(135deg, #0d6efd, #48c9b0); /* gradient navbar */
+    }
+
+        .navbar .nav-link {
+            color: #fff !important; /* linkler beyaz */
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+            .navbar .nav-link:hover {
+                color: #ffd180 !important; /* hover efekti */
+            }
+
+
+    .navbar .nav-link {
+        color: #fff; /* link rengi */
+        font-weight: 500;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+        .navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #ffd180; /* alt çizgi rengi */
+            transition: width 0.3s ease;
+            -webkit-transition: width 0.3s ease;
+        }
+
+        .navbar .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+            background: #ffd180;
+        }
+
+        .navbar .nav-link:hover {
+            color: #ffd180; /* hover rengi */
+        }
+
+    .navbar .nav-link {
+        color: #fff;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+        .navbar .nav-link:hover {
+            background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+</style>

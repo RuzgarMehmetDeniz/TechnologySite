@@ -1,0 +1,188 @@
+﻿@model List<TechnologySite.Entities.Category>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+@functions {
+    string GetIconClass(string categoryName)
+    {
+        var name = categoryName.ToLower();
+        if (name.Contains("akıllı telefon")) return "fa-solid fa-mobile-screen";
+        if (name.Contains("laptop bilgisayar")) return "fa-solid fa-laptop";
+        if (name.Contains("tablet cihaz")) return "fa-solid fa-tablet-screen-button";
+        if (name.Contains("akıllı saat")) return "fa-solid fa-clock";
+        if (name.Contains("kablosuz kulaklık")) return "fa-solid fa-headphones-simple";
+        if (name.Contains("oyun konsolu")) return "fa-solid fa-gamepad";
+        if (name.Contains("dron kamera")) return "fa-solid fa-drone";
+        if (name.Contains("akıllı tv")) return "fa-solid fa-tv";
+        if (name.Contains("robot süpürge")) return "fa-solid fa-robot";
+        if (name.Contains("bluetooth hoparlör")) return "fa-brands fa-bluetooth";
+        if (name.Contains("dijital çalar")) return "fa-solid fa-music";
+        if (name.Contains("bilgisayar mouse")) return "fa-solid fa-computer-mouse";
+        if (name.Contains("kablosuz klavye")) return "fa-solid fa-keyboard";
+        if (name.Contains("harici disk")) return "fa-solid fa-hard-drive";
+        if (name.Contains("akıllı hoparlör")) return "fa-solid fa-speakers";
+        if (name.Contains("web kamera")) return "fa-solid fa-camera";
+        if (name.Contains("usb bellek")) return "fa-solid fa-usb";
+        if (name.Contains("gps navigasyon")) return "fa-solid fa-location-dot";
+        if (name.Contains("e-kitap okuyucu")) return "fa-solid fa-book-open-reader";
+        if (name.Contains("projektör cihazı")) return "fa-solid fa-video";
+        return "fa-solid fa-box";
+    }
+}
+
+<style>
+    /* NAVBAR */
+    .navbar-wrapper {
+        position: relative; /* 👈 mega menu buna göre hizalanır */
+    }
+
+    /* MEGA MENU */
+    #megaMenu {
+        position: absolute;
+        top: 100%; /* navbar ALTINDA */
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 10px;
+        display: none;
+        z-index: 9999;
+    }
+
+        #megaMenu.show {
+            display: flex;
+        }
+
+    .mega-left {
+        width: 260px;
+        background: #f7f7f7;
+        border-right: 1px solid #ddd;
+    }
+
+        .mega-left ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mega-left li {
+            padding: 8px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+            .mega-left li:hover {
+                background: #eaeaea;
+            }
+
+        .mega-left i {
+            margin-right: 10px;
+        }
+
+    .mega-right {
+        flex: 1;
+        padding: 15px;
+    }
+
+    .mega-products {
+        display: none;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+        .mega-products.active {
+            display: flex;
+        }
+
+        .mega-products a {
+            flex: 1 1 calc(20% - 10px);
+            text-decoration: none;
+            color: #333;
+            padding: 6px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+            .mega-products a:hover {
+                background: #f0f8ff;
+                color: #0d6efd;
+            }
+
+    .category-title {
+        width: 100%;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- NAVBAR -->
+<div class="navbar-wrapper">
+    <nav style="height:60px;background:#0d6efd;color:#fff;display:flex;align-items:center;padding:0 20px;">
+        <span id="allProducts" style="cursor:pointer;font-weight:bold;">
+            Tüm Ürünler
+        </span>
+    </nav>
+
+    <!-- MEGA MENU -->
+    <div id="megaMenu">
+        <div class="mega-left">
+            <ul>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <li data-index="@i">
+                        <i class="@GetIconClass(Model[i].CategoryName)"></i>
+                        @Model[i].CategoryName
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="mega-right">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="mega-products" data-content="@i">
+                    <div class="category-title">@Model[i].CategoryName</div>
+                    @foreach (var p in Model[i].Products)
+                    {
+                        <a asp-controller="Category"
+                           asp-action="ProductsByCategory"
+                           asp-route-id="@p.CategoryID">
+                            @p.ProductName
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    const allProducts = document.getElementById("allProducts");
+    const megaMenu = document.getElementById("megaMenu");
+    const leftItems = document.querySelectorAll(".mega-left li");
+    const products = document.querySelectorAll(".mega-products");
+
+    /* AÇ */
+    allProducts.addEventListener("mouseenter", () => {
+        megaMenu.classList.add("show");
+    });
+
+    /* KAPAT */
+    megaMenu.addEventListener("mouseleave", () => {
+        megaMenu.classList.remove("show");
+        products.forEach(p => p.classList.remove("active"));
+    });
+
+    /* KATEGORİ HOVER */
+    leftItems.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+            const idx = item.dataset.index;
+            products.forEach(p => p.classList.remove("active"));
+            document
+                .querySelector(`.mega-products[data-content="${idx}"]`)
+                ?.classList.add("active");
+        });
+    });
+</script>

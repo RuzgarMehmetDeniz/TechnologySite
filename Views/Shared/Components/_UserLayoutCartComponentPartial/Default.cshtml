@@ -1,0 +1,86 @@
+﻿@model List<TechnologySite.Entities.CartItem>
+@using System.Globalization
+
+<section class="py-5">
+	<div class="container">
+		<h2 class="mb-4">Alışveriş Sepetim</h2>
+
+		@if (!Model.Any())
+		{
+			<div class="alert alert-info text-center">
+				Sepetinizde ürün bulunmamaktadır.
+			</div>
+		}
+		else
+		{
+			<div class="table-responsive">
+				<table class="table table-bordered text-center align-middle bg-white">
+					<thead class="table-light">
+						<tr>
+							<th>Ürün</th>
+							<th>Adet</th>
+							<th>Fiyat</th>
+							<th>Toplam</th>
+							<th>Sİl</th>
+							<th>Ekle</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td class="text-start">
+									<img src="@item.Product.Image" width="60" class="me-2" />
+									@item.Product.ProductName
+								</td>
+								<td>@item.Quantity</td>
+								<td>
+									@item.Product.Price.ToString("C", new CultureInfo("tr-TR"))
+								</td>
+								<td>
+									@((item.Product.Price * item.Quantity)
+																.ToString("C", new CultureInfo("tr-TR")))
+						</td>
+
+								<td>
+									<a asp-controller="Cart"
+									   asp-action="RemoveFromCart"
+									   asp-route-cartItemId="@item.CartItemID"
+									   class="btn btn-danger btn-sm">
+										Kaldır
+									</a>
+								</td>
+
+								<td>
+									<a asp-controller="Cart"
+									   asp-action="IncreaseQuantity"
+									   asp-route-cartItemId="@item.CartItemID"
+									   class="btn btn-success btn-sm">
+										Ekle 
+									</a>
+								</td>
+							</tr>
+						}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="text-end mt-4">
+			<h4>
+				Toplam Tutar:
+				<strong>
+					@(
+						Model.Sum(c => c.Product.Price * c.Quantity)
+						.ToString("C", new CultureInfo("tr-TR"))
+						)
+				</strong>
+
+				</h4>
+				<form method="post" asp-action="GoToPayment" asp-controller="Cart">
+					<button type="submit" class="btn btn-success btn-lg">Satın Al</button>
+				</form>
+
+			</div>
+				}
+	</div>
+</section>

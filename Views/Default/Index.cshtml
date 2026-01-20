@@ -1,0 +1,337 @@
+﻿@model TechnologySite.Models.IndexViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    @await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+
+<body>
+    <!-- Navigation-->
+    @await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+
+    <!-- Header / Card Slider -->
+    @if (Model.TopSliders != null && Model.TopSliders.Count > 0)
+    {
+        <section class="card-slider">
+            @foreach (var item in Model.TopSliders)
+            {
+                <div class="card-slide">
+                    <div class="card-img-wrapper">
+                        <img src='@(string.IsNullOrEmpty(item.Image) ? "/images/default.jpg" : item.Image)' class="card-img" />
+                    </div>
+                    <div class="card-content">
+                        <h3>@(string.IsNullOrEmpty(item.Title) ? "Başlık yok" : item.Title)</h3>
+                        <p>@(string.IsNullOrEmpty(item.SubTitle) ? "Açıklama yok" : item.SubTitle)</p>
+                        <a href="/Category/ProductsByCategory/@item.ProductID" class="card-btn">Ürünü İncele</a>
+                    </div>
+                </div>
+            }
+        </section>
+    }
+    else
+    {
+        <p>Slider yükleniyor...</p>
+    }
+
+    <!-- Section-->
+    @await Component.InvokeAsync("_UserLayoutDefaultSectionComponentPartial")
+
+
+    @await Component.InvokeAsync("_UserLayoutDefaultSliderComponentPartial")x"
+
+    <!-- Footer-->
+    @await Component.InvokeAsync("_UserLayoutDefaultFooterComponentPartial")
+
+    <!-- Bootstrap core JS-->
+    @await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+
+
+    <!-- === Chat AI Sabit Buton & Panel === -->
+    <!-- Chat Button -->
+    <div id="ai-fixed-btn">💬</div>
+
+    <!-- Chat Panel -->
+    <div id="ai-chat-panel">
+        <div id="ai-chat-header">
+            <span>Müşteri Hizmetleri</span>
+            <span id="ai-close-btn">✖</span>
+        </div>
+
+        <form id="ai-form">
+            <textarea id="ai-input" class="form-control" placeholder="Sorunuzu yaz..."></textarea>
+            <button type="button" id="ai-send-btn" class="btn btn-primary btn-sm mt-2 w-100">
+                Gönder
+            </button>
+        </form>
+
+        <div id="ai-chat-container">
+            <div id="ai-chat-history"></div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+    }
+
+    /* Slider container */
+    .card-slider {
+        position: relative;
+        width: 90%;
+        max-width: 900px;
+        margin: 40px auto;
+        overflow: hidden;
+    }
+
+    .card-slide {
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        width: 100%;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+        .card-slide.active {
+            opacity: 1;
+            position: relative;
+        }
+
+    .card-img-wrapper {
+        flex: 0 0 200px;
+        margin-right: 15px;
+    }
+
+    .card-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .card-content h3 {
+        font-size: 1.8rem;
+        margin: 0 0 8px;
+        color: #333;
+    }
+
+    .card-content p {
+        font-size: 1rem;
+        margin: 0 0 12px;
+        color: #555;
+    }
+
+    .card-btn {
+        padding: 8px 18px;
+        background: #00e0ff;
+        color: #000;
+        border-radius: 20px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+        .card-btn:hover {
+            background: #00bcd4;
+        }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .card-slide {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .card-img-wrapper {
+            margin: 0 0 15px 0;
+        }
+
+        .card-img {
+            width: 160px;
+            height: 160px;
+        }
+    }
+
+    /* Chat Button */
+    #ai-fixed-btn {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        width: 60px;
+        height: 60px;
+        background: #0d6efd;
+        color: #fff;
+        font-size: 32px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        z-index: 9999;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Chat Panel */
+    #ai-chat-panel {
+        position: fixed;
+        bottom: 90px;
+        right: 25px;
+        width: 300px;
+        background: #fff;
+        border: 2px solid #0d6efd;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+        display: none;
+        flex-direction: column;
+        padding: 10px;
+        z-index: 9999;
+    }
+
+    #ai-chat-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    #ai-close-btn {
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    #ai-input {
+        resize: none;
+        height: 70px;
+    }
+
+    #ai-chat-container {
+        max-height: 350px;
+        overflow-y: auto;
+        margin-top: 8px;
+        padding: 8px;
+        background: #f7f7f7;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .ai-message {
+        margin: 6px 0;
+        display: flex;
+    }
+
+    .ai-message-user {
+        justify-content: flex-end;
+    }
+
+        .ai-message-user .ai-bubble {
+            background: #0d6efd;
+            color: #fff;
+            border-radius: 15px 15px 0 15px;
+        }
+
+    .ai-message-ai {
+        justify-content: flex-start;
+    }
+
+        .ai-message-ai .ai-bubble {
+            background: #e9ecef;
+            color: #000;
+            border-radius: 15px 15px 15px 0;
+        }
+
+    .ai-bubble {
+        padding: 8px 12px;
+        max-width: 75%;
+        word-wrap: break-word;
+        font-size: 0.95rem;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll('.card-slide');
+        let index = 0;
+        if (slides.length === 0) return;
+
+        slides[0].classList.add("active");
+        setInterval(() => {
+            slides[index].classList.remove("active");
+            index = (index + 1) % slides.length;
+            slides[index].classList.add("active");
+        }, 5005);
+    });
+
+    // Chat Toggle
+    const btn = document.getElementById("ai-fixed-btn");
+    const panel = document.getElementById("ai-chat-panel");
+    const closeBtn = document.getElementById("ai-close-btn");
+
+    btn.addEventListener("click", () => {
+        panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+    });
+
+    closeBtn.addEventListener("click", () => {
+        panel.style.display = "none";
+    });
+
+    // Chat History
+    const chatHistory = document.getElementById("ai-chat-history");
+
+    document.getElementById("ai-send-btn").addEventListener("click", async function () {
+        const inputEl = document.getElementById("ai-input");
+        const question = inputEl.value.trim();
+        if (!question) return;
+
+        appendChat("user", question);
+        inputEl.value = "";
+        scrollToBottom();
+
+        const temp = appendChat("ai", "Cevap bekleniyor…");
+
+        try {
+            const res = await fetch("/ChatAI/SendChatWithAI", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ UserInput: question })
+            });
+            const data = await res.json();
+            updateChat(temp, data.answer || "Cevap yok.");
+        } catch {
+            updateChat(temp, "AI cevap alınamadı!");
+        }
+
+        scrollToBottom();
+    });
+
+    function appendChat(type, text) {
+        const el = document.createElement("div");
+        el.classList.add("ai-message", type === "user" ? "ai-message-user" : "ai-message-ai");
+
+        const bubble = document.createElement("div");
+        bubble.classList.add("ai-bubble");
+        bubble.textContent = text;
+
+        el.appendChild(bubble);
+        chatHistory.appendChild(el);
+
+        return el;
+    }
+
+    function updateChat(el, text) {
+        el.querySelector(".ai-bubble").textContent = text;
+    }
+
+    function scrollToBottom() {
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+</script>

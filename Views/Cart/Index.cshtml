@@ -1,0 +1,17 @@
+﻿@{
+	Layout = null;
+}
+@await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+@await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+@await Component.InvokeAsync("_UserLayoutCartComponentPartial")
+
+
+
+@await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+@await Component.InvokeAsync("_UserLayoutDefaultAboutScriptComponentPartial")
+<style>
+	body {
+		background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+	}
+
+</style>

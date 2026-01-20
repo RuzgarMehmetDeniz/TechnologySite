@@ -1,0 +1,66 @@
+﻿@model AdminAreaChartViewModel
+
+<div class="col-12 col-lg-12 col-xl-12 d-flex">
+    <div class="card w-100 rounded-4">
+        <div class="card-body">
+            <h6 class="mb-3">3 Aylık Veri Grafiği</h6>
+
+            <div class="d-flex gap-4 mb-3">
+                <div>
+                    <h4 class="text-success mb-0">₺ @ViewBag.v1</h4>
+                    <small>Gelir</small>
+                </div>
+                <div>
+                    <h4 class="text-danger mb-0">₺ @ViewBag.v2</h4>
+                    <small>Gider</small>
+                </div>
+            </div>
+
+            <div style="height:320px">
+                <canvas id="revenueExpenseChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const months = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Months));
+        const revenues = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.RevenueTotals));
+        const expenses = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.ExpenseTotals));
+
+        new Chart(document.getElementById("revenueExpenseChart"), {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: "Gelir",
+                        data: revenues,
+                        borderColor: "green",
+                        backgroundColor: "rgba(0,128,0,0.15)",
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: "Gider",
+                        data: expenses,
+                        borderColor: "red",
+                        borderDash: [6,6],
+                        fill: false,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    });
+</script>

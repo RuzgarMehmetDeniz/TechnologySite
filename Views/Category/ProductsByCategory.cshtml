@@ -1,0 +1,23 @@
+﻿﻿﻿@{
+Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+	 @await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+
+     @await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+
+
+<body>
+
+	@await Component.InvokeAsync("_UserLayoutCategoryProductListComponentPartial", new { categoryID = Model.CategoryID })
+
+
+	@await Component.InvokeAsync("_UserLayoutDefaultFooterComponentPartial")
+
+	@await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+
+
+</body>
+
+</html>

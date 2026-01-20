@@ -1,0 +1,181 @@
+﻿@model List<TechnologySite.Entities.Category>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row gx-4 gy-4 justify-content-center">
+
+            @foreach (var category in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+                    <div class="cat-card text-center p-4 h-100"
+                         onclick="location.href='@Url.Action("ProductsByCategory", "Category", new { id = category.CategoryID })'">
+
+                        @if (IsPopular(category.CategoryName))
+                        {
+                            <span class="cat-badge">Popüler</span>
+                        }
+
+                        <div class="cat-icon mb-3">
+                            <i class="@GetCategoryIcon(category.CategoryName)"></i>
+                        </div>
+
+                        <h6 class="card-title mb-2">@category.CategoryName</h6>
+
+                        <p class="cat-desc">
+                            @GetCategoryDescription(category.CategoryName)
+                        </p>
+
+                        <a asp-controller="Category"
+                           asp-action="ProductsByCategory"
+                           asp-route-id="@category.CategoryID"
+                           class="btn btn-red">
+                            Ürünlere Git
+                        </a>
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+@functions {
+
+    bool IsPopular(string name)
+    {
+        name = name.ToLower();
+        return name.Contains("telefon") || name.Contains("laptop") || name.Contains("oyun");
+    }
+
+    string GetCategoryIcon(string name)
+    {
+        name = name.ToLower();
+
+        if (name.Contains("telefon")) return "fa-solid fa-mobile-screen";
+        if (name.Contains("saat")) return "fa-solid fa-clock";
+        if (name.Contains("tv")) return "fa-solid fa-tv";
+        if (name.Contains("kulak")) return "fa-solid fa-headphones";
+        if (name.Contains("laptop")) return "fa-solid fa-laptop";
+        if (name.Contains("oyun")) return "fa-solid fa-gamepad";
+        if (name.Contains("kamera")) return "fa-solid fa-camera";
+        if (name.Contains("mouse")) return "fa-solid fa-computer-mouse";
+
+        return "fa-solid fa-box";
+    }
+
+    string GetCategoryDescription(string name)
+    {
+        name = name.ToLower();
+
+        if (name.Contains("telefon")) return "Akıllı telefon modelleri";
+        if (name.Contains("saat")) return "Akıllı ve şık saatler";
+        if (name.Contains("tv")) return "Yüksek çözünürlüklü TV’ler";
+        if (name.Contains("kulak")) return "Kablosuz ve konforlu";
+        if (name.Contains("laptop")) return "Güçlü dizüstü bilgisayarlar";
+        if (name.Contains("oyun")) return "Oyun ve eğlence dünyası";
+        if (name.Contains("kamera")) return "Profesyonel çekimler";
+
+        return "Ürünleri incele";
+    }
+}
+<style>
+    /* SAYFA ARKA PLAN */
+    body {
+        background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+    }
+
+    /* KART */
+    .cat-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e5e7eb;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.35s ease;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+        /* ÜST GRADIENT ÇİZGİ */
+        .cat-card::before {
+            content: "";
+            height: 4px;
+            background: linear-gradient(to right, #22c55e, #16a34a);
+            display: block;
+            margin: -16px -16px 16px -16px;
+        }
+
+        /* HOVER */
+        .cat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+        }
+
+    /* ICON */
+    .cat-icon i {
+        font-size: 36px;
+        color: #22c55e;
+        transition: transform 0.3s ease;
+    }
+
+    .cat-card:hover .cat-icon i {
+        transform: scale(1.15) rotate(3deg);
+    }
+
+    /* TITLE */
+    .card-title {
+        font-size: 17px;
+        font-weight: 700;
+        color: #15803d;
+    }
+
+    /* DESC */
+    .cat-desc {
+        font-size: 13px;
+        color: #6b7280;
+        margin-bottom: 18px;
+    }
+
+    /* BADGE */
+    .cat-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #22c55e;
+        color: #fff;
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    /* BUTTON */
+    .btn-red {
+        background: #ef4444;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 26px;
+        border-radius: 30px;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 14px rgba(239,68,68,0.4);
+    }
+
+    .cat-card:hover .btn-red {
+        background: #b91c1c;
+        transform: scale(1.05);
+    }
+
+    /* MOBİL */
+    @@media (max-width: 576px) {
+        .btn-red
+
+    {
+        width: 100%;
+    }
+
+    }
+</style>

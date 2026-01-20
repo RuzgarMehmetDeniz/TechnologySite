@@ -1,0 +1,49 @@
+﻿@using TechnologySite.Entities
+@model Contact
+
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">İLETİŞİM SAYFASI</h2>
+        </div>
+
+        @if (ViewBag.Success != null)
+        {
+            <div class="alert alert-success text-center">
+                @ViewBag.Success
+            </div>
+        }
+
+        <form asp-controller="Contact" asp-action="Contact" method="post">
+
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6">
+
+                    <input asp-for="Name" class="form-control mb-3" placeholder="Adınız" />
+
+                    <input asp-for="Surname" class="form-control mb-3" placeholder="Soyadınız" />
+
+                    <input asp-for="Email" class="form-control mb-3" placeholder="Email Adresiniz" />
+
+                    <input asp-for="Phone" class="form-control mb-3" placeholder="Telefon Numaranız" />
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              placeholder="Mesajınız"
+                              rows="8"></textarea>
+
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary btn-xl text-uppercase">Mesajı Gönder</button>
+            </div>
+
+        </form>
+
+    </div>
+</section>

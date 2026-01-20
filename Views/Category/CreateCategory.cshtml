@@ -1,0 +1,72 @@
+﻿@using TechnologySite.Entities
+@model Category
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    @await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+	<div id="wrapper">
+
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				@await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+				<div class="container-fluid">
+
+
+					<h4 class="page-title">Kategori Ekleme Sayfası</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<form method="post">
+								<input type="hidden" asp-for="CategoryID" />
+								<div class="card">
+									<div class="card-body">
+										<div class="form-group">
+											<label for="CategoryName">Kategori Adını Giriniz</label>
+											<input type="text" class="form-control" asp-for="CategoryName" id="CategoryName">
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="CategoryDescription">Kategori Açıklamasını Giriniz</label>
+											<input type="text" class="form-control" asp-for="CategoryDescription" id="CategoryDescription">
+										</div>
+									</div>
+									<div class="card-action">
+										<button class="btn btn-success">Kategori Ekle</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Teknoloji Sayfası  2026</span>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	@await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

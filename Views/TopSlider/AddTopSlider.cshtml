@@ -1,0 +1,82 @@
+﻿@using TechnologySite.Entities
+@model TopSlider
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+	<div id="wrapper">
+
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				@await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+				<div class="container-fluid">
+
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex align-items-center">
+								<h5 class="mb-0">Ürün Oluşturma Sayfası</h5>
+							</div>
+							<form method="post">
+
+								<label>Başlık</label>
+								<input asp-for="Title" type="text" class="form-control" />
+								<span asp-validation-for="Title" class="text-danger"></span>
+								<br />
+
+								<label>Açıklama</label>
+								<input asp-for="SubTitle" type="text" class="form-control" />
+								<span asp-validation-for="SubTitle" class="text-danger"></span>
+								<br />
+
+								<label>Görsel</label>
+								<input asp-for="Image" type="text" class="form-control" />
+								<span asp-validation-for="Image" class="text-danger"></span>
+								<br />
+
+								<label>Ürün</label>
+								<select asp-for="ProductID"
+										class="form-control"
+										asp-items="@(new SelectList(ViewBag.Products, "ProductID", "ProductName"))">
+									<option value="">Ürün Seçiniz</option>
+								</select>
+								<span asp-validation-for="ProductID" class="text-danger"></span>
+								<br />
+
+								<button class="btn btn-primary">Ürün Oluştur</button>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Teknoloji Sayfası  2026</span>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	@await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+﻿@using TechnologySite.Entities
+@model List<Contact>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+    }
+
+
+
+</style>
+
+<section id="team">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Destek Ekibimiz</h2>
+            <h3 class="section-subheading text-muted">
+                Müşteri mutluluğu için her zaman destekteyiz.
+            </h3>
+        </div>
+
+        @foreach (var about in Model)
+        {
+            <div class="row">
+                @foreach (var item in about.Teams)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-member text-center">
+                            <img class="mx-auto rounded-circle" src="@item.Image" alt="..." />
+                            <h4>@item.Name @item.Surname</h4>
+                            <p class="text-muted">@item.Description</p>
+
+                            <a class="btn btn-dark btn-social mx-2" href="@item.XUrl">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="btn btn-dark btn-social mx-2" href="@item.InstagramUrl">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a class="btn btn-dark btn-social mx-2" href="@item.LınkedInUrl">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <p class="large text-muted">
+                    Müşteri memnuniyeti bizim için her şey demek.
+                    7/24 destek ekibimizle her zaman yanınızdayız.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

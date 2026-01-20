@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+    @await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+
+<body>
+    <!-- Navigation-->
+    @await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+
+    <!-- Header-->
+    @await Component.InvokeAsync("_UserLayoutDefaultSubHeadingComponentPartial")
+
+    @RenderBody()
+
+    <!-- Section-->
+    @await Component.InvokeAsync("_UserLayoutDefaultSectionComponentPartial")
+
+    <!-- Footer-->
+    @await Component.InvokeAsync("_UserLayoutDefaultFooterComponentPartial")
+
+    <!-- Bootstrap core JS-->
+    @await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+
+</body>
+</html>

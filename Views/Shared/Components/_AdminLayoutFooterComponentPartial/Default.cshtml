@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Html
+@using TechnologySite.Entities
+@model List<Footer>
+@{
+    bool hasAboutContent = Model != null && Model.Any();
+}
+<head>
+    <meta charset="utf-8" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body">
+
+        <!-- Header -->
+        <div class="d-flex align-items-center mb-4">
+            <h4 class="fw-bold mb-0 text-primary">
+                <i class="bi bi-info-circle-fill me-2"></i> Hakkımızda Alanı
+            </h4>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-12">
+                    <div class="card border-0 shadow rounded-4">
+                        <div class="card-body">
+
+                            <div class="row g-4">
+
+                                <!-- Açıklama -->
+                                <div class="col-12">
+                                    <div class="d-flex gap-3">
+                                        <i class="bi bi-card-text text-info fs-4"></i>
+                                        <div>
+                                            <div class="fw-semibold mb-1">Açıklama</div>
+                                            <div class="text-muted small lh-lg">
+                                                @item.Description
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Harita -->
+                                <div class="col-12">
+                                    <div class="d-flex gap-3">
+                                        <i class="bi bi-geo-alt-fill text-danger fs-4"></i>
+                                        <div>
+                                            <div class="fw-semibold mb-1">Harita / Konum</div>
+                                            <a href="@item.Location" target="_blank" class="text-decoration-none small">
+                                                Konumu Görüntüle
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sosyal Medya -->
+                                @SocialItem("Instagram", item.InstagramUrl, "bi-instagram", "text-danger")
+                                @SocialItem("LinkedIn", item.LinkedInUrl, "bi-linkedin", "text-primary")
+                                @SocialItem("Facebook", item.FacebookUrl, "bi-facebook", "text-primary")
+                                @SocialItem("TikTok", item.TikTokUrl, "bi-tiktok", "text-dark")
+                                @SocialItem("YouTube", item.YouTubeUrl, "bi-youtube", "text-danger")
+                                @SocialItem("Pinterest", item.PinterestUrl, "bi-pinterest", "text-danger")
+                                @SocialItem("WhatsApp", item.WhatsAppUrl, "bi-whatsapp", "text-success")
+                                @SocialItem("Telegram", item.TelegramUrl, "bi-telegram", "text-info")
+                                @SocialItem("Reddit", item.RedditUrl, "bi-reddit", "text-danger")
+                                @SocialItem("Discord", item.DiscordUrl, "bi-discord", "text-primary")
+                                @SocialItem("Twitter (X)", item.XUrl, "bi-twitter-x", "text-dark")
+                                @SocialItem("Snapchat", item.SnapchatUrl, "bi-snapchat", "text-warning")
+
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="d-flex gap-2 mt-4">
+                                <a href="/Default/UpdateDefault/@item.FooterID"
+                                   class="btn btn-outline-warning rounded-pill px-4">
+                                    <i class="bi bi-pencil-square me-1"></i> Güncelle
+                                </a>
+
+                                <a href="/Default/DeleteDefault/@item.FooterID"
+                                   class="btn btn-outline-danger rounded-pill px-4">
+                                    <i class="bi bi-trash-fill me-1"></i> Sil
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Add New -->
+        <div class="mt-4">
+
+            @if (!hasAboutContent)
+            {
+                <!-- Aktif -->
+                <a href="/About/CreateAbout/"
+                   class="btn btn-lg btn-primary rounded-pill shadow px-4">
+                    <i class="bi bi-plus-circle me-1"></i> Yeni Hakkımızda Yazısı Ekle
+                </a>
+            }
+            else
+            {
+                <!-- Pasif -->
+                <button class="btn btn-lg btn-secondary rounded-pill px-4" disabled>
+                    <i class="bi bi-lock-fill me-1"></i> Yeni Hakkımızda Yazısı Ekle
+                </button>
+
+                <!-- Info -->
+                <div class="alert alert-info mt-3 d-flex align-items-center" role="alert">
+                    <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+                    <div>
+                        <strong>Bilgilendirme:</strong><br />
+                        Hakkımızda sayfası için yalnızca <b>1 adet içerik</b> tanımlanabilir.
+                        Mevcut içeriği <b>Düzenle</b> butonu ile güncelleyebilirsiniz.
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>
+
+@functions {
+    public IHtmlContent SocialItem(string title, string url, string icon, string color)
+    {
+        if (string.IsNullOrEmpty(url))
+            return Html.Raw("");
+
+        return Html.Raw($@"
+        <div class='col-md-6'>
+            <div class='d-flex gap-3'>
+                <i class='bi {icon} {color} fs-4'></i>
+                <div>
+                    <div class='fw-semibold mb-1'>{title}</div>
+                    <a href='{url}' target='_blank' class='text-decoration-none small'>{url}</a>
+                </div>
+            </div>
+        </div>");
+    }
+}

@@ -1,0 +1,96 @@
+﻿@{
+    Layout = null;
+}
+@await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+@await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+
+<section class="py-5">
+    <div class="container d-flex justify-content-center">
+
+        <div class="card shadow-lg" style="max-width: 500px; width:100%;">
+            <div class="card-header bg-success text-white text-center">
+                <h3>🎉 Siparişiniz Alındı!</h3>
+            </div>
+            <div class="card-body">
+
+                <p class="card-text">
+                    <strong>Teşekkürler!</strong> Siparişiniz başarıyla işleme alındı.
+                </p>
+
+                @* Toplam Tutar *@
+                @if (TempData["TotalAmount"] != null)
+                {
+                    <div class="mb-2">
+                        <strong>Toplam Tutar:</strong>
+                        <span class="text-primary">@TempData["TotalAmount"]</span>
+                    </div>
+                }
+
+                @* Ödeme Türü *@
+                @if (TempData["SelectedPayment"] != null)
+                {
+                    <div class="mb-2">
+                        <strong>Ödeme Türü:</strong>
+                        <span class="text-secondary">@TempData["SelectedPayment"]</span>
+                    </div>
+                }
+
+                @* Taksit Sayısı *@
+                @if (TempData["SelectedInstallments"] != null)
+                {
+                    int installments = 0;
+                    int.TryParse(TempData["SelectedInstallments"]?.ToString(), out installments);
+                    string instalText = installments > 1 ? $"{installments} taksit" : "Tek çekim";
+
+                    <div class="mb-2">
+                        <strong>Taksit:</strong>
+                        <span class="text-secondary">@instalText</span>
+                    </div>
+                }
+
+                @* Taksit Başına Tutar *@
+                @if (TempData["TotalAmount"] != null && TempData["SelectedInstallments"] != null)
+                {
+                    decimal totalValue = 0;
+                    int.TryParse(TempData["SelectedInstallments"]?.ToString(), out int installmentsValue);
+
+                    var rawTotalString = TempData["TotalAmount"]?.ToString();
+                    if (decimal.TryParse(
+                    rawTotalString?
+                    .Replace("₺", "")
+                    .Replace(".", "")
+                    .Replace(",", "."),
+                    System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    out totalValue))
+                    {
+                        if (installmentsValue > 0)
+                        {
+                            decimal perInstallment = totalValue / installmentsValue;
+                            <div class="mt-2 text-muted">
+                                <strong>Taksit Başına:</strong>
+                                @perInstallment.ToString("C", new System.Globalization.CultureInfo("tr-TR"))
+                            </div>
+                        }
+                    }
+                }
+
+            </div>
+
+            <div class="card-footer text-center">
+                <a asp-controller="Default" asp-action="Index" class="btn btn-primary w-100">
+                    Ana Sayfaya Dön
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+@await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+
+<style>
+    body {
+        background: linear-gradient(135deg, #fce4ec, #e1f5fe, #ffe0b2);
+    }
+</style>

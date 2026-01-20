@@ -1,0 +1,140 @@
+﻿@using TechnologySite.Entities
+@model FooterViewModel
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Freelancer - Start Bootstrap Theme</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="~/startbootstrap-freelancer-gh-pages/assets/favicon.ico" />
+	<!-- Font Awesome icons (free version)-->
+	<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+	<!-- Google fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="~/startbootstrap-freelancer-gh-pages/css/styles.css" rel="stylesheet" />
+</head>
+<footer class="footer text-center">
+	<div class="container">
+		<div class="row">
+
+			@foreach (var footer in Model.Footers)
+			{
+
+				<!-- KONUM -->
+				<div class="col-lg-6 mb-5 mb-lg-0">
+					<h4 class="text-uppercase mb-4">YERİMİZ</h4>
+
+					<iframe width="100%"
+							height="250"
+							src="@footer.Location"
+							style="border:1px solid #888">
+					</iframe>
+				</div>
+
+				<!-- SOSYAL MEDYA -->
+				<div class="col-lg-6 mb-5 mb-lg-0">
+					<h4 class="text-uppercase mb-4">Sosyal Medya Hesaplarımız</h4>
+
+					<div class="row text-center">
+
+						<!-- Satır 1 -->
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.InstagramUrl">
+								<i class="fab fa-instagram"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.LinkedInUrl">
+								<i class="fab fa-linkedin-in"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.XUrl">
+								<i class="fab fa-twitter"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.FacebookUrl">
+								<i class="fab fa-facebook-f"></i>
+							</a>
+						</div>
+
+						<!-- Satır 2 -->
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.TikTokUrl">
+								<i class="fab fa-tiktok"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.YouTubeUrl">
+								<i class="fab fa-youtube"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.PinterestUrl">
+								<i class="fab fa-pinterest"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.WhatsAppUrl">
+								<i class="fab fa-whatsapp"></i>
+							</a>
+						</div>
+
+						<!-- Satır 3 -->
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.TelegramUrl">
+								<i class="fab fa-telegram"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.RedditUrl">
+								<i class="fab fa-reddit"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.DiscordUrl">
+								<i class="fab fa-discord"></i>
+							</a>
+						</div>
+						<div class="col-4">
+							<a class="btn btn-outline-light btn-social mb-2" href="@footer.SnapchatUrl">
+								<i class="fab fa-snapchat-ghost"></i>
+							</a>
+						</div>
+
+					</div>
+				</div>
+
+			}
+
+			<!-- KATEGORİLER -->
+			@*  <div class="col-lg-4">
+                <h4 class="text-uppercase mb-4">10 Kategorimiz</h4>
+
+                @foreach (var category in Model.Categories)
+                {
+                    <div>
+                        <span style="color:white; font-size:18px;">•</span>
+                        <a href="/Category/@category.CategoryName"
+                           style="color:white; text-decoration:none; margin-left:6px;">
+                            @category.CategoryName
+                        </a>
+                    </div>
+                }
+            </div> *@
+
+		</div>
+	</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="~/startbootstrap-freelancer-gh-pages/js/scripts.js"></script>
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<!-- * *                               SB Forms JS                               * *-->
+<!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

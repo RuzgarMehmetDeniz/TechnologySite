@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "OpenAI Demo";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    @await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+    <div id="wrapper">
+
+        @await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+
+                @await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+                <div class="container-fluid">
+
+                    <h2 class="mb-4">Anlık AI</h2>
+
+                    <!-- AI Form -->
+                    <form method="post" class="mb-3">
+                        <div class="mb-2">
+                            <textarea name="userInput"
+                                      rows="5"
+                                      class="form-control shadow-sm rounded-4 p-3 border-primary"
+                                      placeholder="Sorunuzu buraya yazın..."
+                                      style="background: #f9fafb; font-size: 1rem; line-height: 1.5; transition: all 0.3s;"
+                                      onfocus="this.style.boxShadow='0 0 12px rgba(0,123,255,0.4)'; this.style.borderColor='#0d6efd';"
+                                      onblur="this.style.boxShadow=''; this.style.borderColor='#0d6efd';">@ViewBag.UserInput </textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary shadow-sm rounded-3 px-4">Gönder</button>
+                    </form>
+
+                    <!-- AI Answer Card -->
+                    @if (ViewBag.Answer != null)
+                    {
+                        <div class="card mt-3 shadow-lg border-primary rounded-4" style="background: #f0f4f8;">
+                            <div class="card-header bg-primary text-white fw-bold d-flex align-items-center">
+                                <span class="fs-4 me-2">🤖</span>
+                                AI Answer
+                            </div>
+                            <div class="card-body">
+                                <p class="mb-0" style="font-size: 1.05rem; line-height: 1.6;">
+                                    @ViewBag.Answer
+                                </p>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Teknoloji Sayfası  2026</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

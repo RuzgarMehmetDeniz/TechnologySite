@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Order>
+
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<!DOCTYPE html>
+<html lang="en">
+
+    @await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+    <div id="wrapper">
+
+        @await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+
+                @await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+                <div class="container-fluid mt-4">
+
+                    <h2 class="text-primary mb-4 fw-bold">Siparişler</h2>
+
+                    <div class="row g-4">
+                        @foreach (var order in Model)
+                        {
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card border-0 shadow-lg">
+                                    <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+                                        <div class="fs-5">
+                                            <i class="fas fa-user-circle me-2"></i>
+                                            <strong>@order.User.UserName</strong>
+                                        </div>
+                                        <small class="text-light">
+                                            <i class="fas fa-clock me-1"></i>
+                                            @order.CreatedDate.ToString("dd.MM.yyyy HH:mm")
+                                        </small>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <h5 class="text-success fw-bold">
+                                            Toplam Tutar: <span class="fs-5">@order.TotalPrice.ToString("C")</span>
+                                        </h5>
+
+                                        <ul class="list-group list-group-flush mt-3">
+                                            @foreach (var item in order.OrderItems)
+                                            {
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fas fa-box-open text-primary me-3"></i>
+                                                        <div>
+                                                            <div class="fw-semibold">@item.Product.ProductName</div>
+                                                            <small class="text-muted">Adet: @item.Quantity</small>
+                                                        </div>
+                                                    </div>
+                                                    <span class="badge bg-info text-dark fs-6">
+                                                        @item.Price.ToString("C")
+                                                    </span>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+
+                                    <div class="card-footer text-end bg-light">
+                                        <a asp-action="Details" asp-route-id="@order.OrderID" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-info-circle me-1"></i> Detay
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+            <footer class="sticky-footer bg-white mt-4">
+                <div class="container my-auto text-center">
+                    <small class="text-secondary">Copyright &copy; Teknoloji Sayfası 2026</small>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    @await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+	<div id="wrapper">
+
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				@await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+				<div class="container-fluid">
+
+					@await Component.InvokeAsync("_AdminLayoutPageHeadingComponentPartial")
+
+					@await Component.InvokeAsync("_AdminLayoutContentRowComponentPartial")
+
+					@await Component.InvokeAsync("_AdminLayoutAreaChartComponentPartial")
+
+					@await Component.InvokeAsync("ProductPriceCompare")
+
+				</div>
+
+			</div>
+
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Teknoloji Sayfası  2026</span>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	@await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

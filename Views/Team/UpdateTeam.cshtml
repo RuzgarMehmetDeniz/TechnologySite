@@ -1,0 +1,92 @@
+﻿@using TechnologySite.Entities
+@model Team
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+	<div id="wrapper">
+
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				@await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+				<div class="container-fluid">
+
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex align-items-center">
+								<h5 class="mb-0">Personel Güncelleme Sayfası</h5>
+							</div>
+							<form method="post">
+
+								<input asp-for="ID" type="hidden" />
+
+								<label>Ad</label>
+								<input asp-for="Name" type="text" class="form-control" />
+								<span asp-validation-for="Name" class="text-danger"></span>
+								<br />
+
+								<label>Soyad</label>
+								<input asp-for="Surname" type="text" class="form-control" />
+								<span asp-validation-for="Surname" class="text-danger"></span>
+								<br />
+
+								<label>Unvan</label>
+								<input asp-for="Description" type="text" class="form-control" />
+								<span asp-validation-for="Description" class="text-danger"></span>
+								<br />
+
+								<label>Resim</label>
+								<input asp-for="Image" type="text" class="form-control" />
+								<span asp-validation-for="Image" class="text-danger"></span>
+								<br />
+								<label>Instagram</label>
+								<input asp-for="InstagramUrl" type="text" class="form-control" />
+								<span asp-validation-for="InstagramUrl" class="text-danger"></span>
+								<br />
+								<label>Twitter</label>
+								<input asp-for="XUrl" type="text" class="form-control" />
+								<span asp-validation-for="XUrl" class="text-danger"></span>
+								<br />
+								<label>LınkedIn</label>
+								<input asp-for="LınkedInUrl" type="text" class="form-control" />
+								<span asp-validation-for="LınkedInUrl" class="text-danger"></span>
+								<br />
+
+								<button class="btn btn-primary">Kaydet</button>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Teknoloji Sayfası  2026</span>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	@await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

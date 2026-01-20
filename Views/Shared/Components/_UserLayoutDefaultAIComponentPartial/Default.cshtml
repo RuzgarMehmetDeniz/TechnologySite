@@ -1,0 +1,119 @@
+﻿<!-- AI Chat Floating Card -->
+<div id="aiChatCard" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: 480px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+">
+
+    <!-- Header -->
+    <div style="
+        background: #0d6efd;
+        color: white;
+        padding: 10px 15px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    " onclick="toggleChatBody()">
+        <span>🤖 Müşteri Hizmetleri</span>
+        <span style="font-size: 16px;">✕</span>
+    </div>
+
+    <!-- Body -->
+    <div id="aiChatBody" style="
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 8px;
+        overflow-y: auto;
+        display: flex;
+    ">
+
+        <!-- Chat Messages -->
+        <div id="chatMessages" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px;"></div>
+
+        <!-- User Input -->
+        <textarea id="chatInput" rows="3" placeholder="Sorunuzu yazın..." style="
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            padding: 8px;
+            font-size: 0.95rem;
+            resize: none;
+        "></textarea>
+        <button onclick="sendChat()" style="
+            margin-top: 5px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        ">
+            Gönder
+        </button>
+    </div>
+</div>
+
+<script>
+    function toggleChatBody() {
+        const body = document.getElementById('aiChatBody');
+        body.style.display = body.style.display === 'none' ? 'flex' : 'none';
+    }
+
+        async function sendChat() {
+        const input = document.getElementById('chatInput');
+        const messages = document.getElementById('chatMessages');
+        const text = input.value.trim();
+        if (!text) return;
+
+        const userMessage = document.createElement('div');
+        userMessage.textContent = text;
+        userMessage.style.background = '#d1e7ff';
+        userMessage.style.padding = '6px 10px';
+        userMessage.style.borderRadius = '8px';
+        userMessage.style.alignSelf = 'flex-end';
+        messages.appendChild(userMessage);
+
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+
+        const aiReply = document.createElement('div');
+        aiReply.textContent = "AI cevabı yükleniyor...";
+        aiReply.style.background = '#e9ecef';
+        aiReply.style.padding = '6px 10px';
+        aiReply.style.borderRadius = '8px';
+        aiReply.style.alignSelf = 'flex-start';
+        messages.appendChild(aiReply);
+        messages.scrollTop = messages.scrollHeight;
+
+        try {
+            const response = await fetch('/ChatAI/SendChatWithAI', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userInput: text })
+            });
+
+            const data = await response.json();
+            aiReply.textContent = data.answer; // AI cevabını güncelle
+            messages.scrollTop = messages.scrollHeight;
+
+        } catch (error) {
+            aiReply.textContent = "AI cevabı alınamadı. Tekrar deneyin.";
+        }
+    }
+
+</script>

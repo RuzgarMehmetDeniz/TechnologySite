@@ -1,0 +1,123 @@
+﻿@using TechnologySite.Entities
+@model Footer
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+@await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+	<div id="wrapper">
+
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				@await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+				<div class="container-fluid">
+
+					<div class="card">
+						<div class="card-body">
+							<div class="d-flex align-items-center">
+								<h5 class="mb-0">Hakkımızda Güncelleme Sayfası</h5>
+							</div>
+							<form method="post">
+
+								<input asp-for="FooterID" type="hidden" />
+
+								<label>Açıklama</label>
+								<textarea asp-for="Description" class="form-control" rows="3"></textarea>
+								<span asp-validation-for="Description" class="text-danger"></span>
+								<br />
+
+								<label>Harita</label>
+								<input asp-for="Location" type="text" class="form-control" />
+								<span asp-validation-for="Location" class="text-danger"></span>
+								<br />
+
+								<label>Instagram</label>
+								<input asp-for="InstagramUrl" type="text" class="form-control" />
+								<span asp-validation-for="InstagramUrl" class="text-danger"></span>
+								<br />
+
+								<label>Facebook</label>
+								<input asp-for="FacebookUrl" type="text" class="form-control" />
+								<span asp-validation-for="FacebookUrl" class="text-danger"></span>
+								<br />
+
+								<label>YouTube</label>
+								<input asp-for="YouTubeUrl" type="text" class="form-control" />
+								<span asp-validation-for="YouTubeUrl" class="text-danger"></span>
+								<br />
+								<label>Pinterest</label>
+								<input asp-for="PinterestUrl" type="text" class="form-control" />
+								<span asp-validation-for="PinterestUrl" class="text-danger"></span>
+								<br />
+								<label>Telegram</label>
+								<input asp-for="TelegramUrl" type="text" class="form-control" />
+								<span asp-validation-for="TelegramUrl" class="text-danger"></span>
+								<br />
+								<label>Discord</label>
+								<input asp-for="DiscordUrl" type="text" class="form-control" />
+								<span asp-validation-for="DiscordUrl" class="text-danger"></span>
+								<br />
+								<label>Snapchat</label>
+								<input asp-for="SnapchatUrl" type="text" class="form-control" />
+								<span asp-validation-for="SnapchatUrl" class="text-danger"></span>
+								<br />
+								<label>LinkedIn</label>
+								<input asp-for="LinkedInUrl" type="text" class="form-control" />
+								<span asp-validation-for="LinkedInUrl" class="text-danger"></span>
+								<br />
+								<label>TikTok</label>
+								<input asp-for="TikTokUrl" type="text" class="form-control" />
+								<span asp-validation-for="TikTokUrl" class="text-danger"></span>
+								<br />
+								<label>WhatsApp</label>
+								<input asp-for="WhatsAppUrl" type="text" class="form-control" />
+								<span asp-validation-for="WhatsAppUrl" class="text-danger"></span>
+								<br />
+								<label>Reddit</label>
+								<input asp-for="RedditUrl" type="text" class="form-control" />
+								<span asp-validation-for="RedditUrl" class="text-danger"></span>
+								<br />
+								<label>Twitter (X)</label>
+								<input asp-for="XUrl" type="text" class="form-control" />
+								<span asp-validation-for="XUrl" class="text-danger"></span>
+								<br />
+
+								
+
+								<button class="btn btn-primary">Güncelle</button>
+
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Teknoloji Sayfası  2026</span>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	@await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

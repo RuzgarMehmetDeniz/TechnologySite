@@ -1,0 +1,91 @@
+﻿@using TechnologySite.Entities
+@model Product
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    @await Component.InvokeAsync("_AdminLayoutHeadComponentPartial")
+
+<body id="page-top">
+
+	<div id="wrapper">
+
+		@await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial")
+
+		<div id="content-wrapper" class="d-flex flex-column">
+
+			<div id="content">
+
+				@await Component.InvokeAsync("_AdminLayoutTopNavbarComponentPartial")
+
+				<div class="container-fluid">
+
+
+					<h4 class="page-title">Ürün Ekleme Sayfası</h4>
+					<div class="row">
+						<div class="col-md-12">
+							<form method="post">
+								<input type="hidden" asp-for="ProductID" />
+								<div class="card">
+									<div class="card-body">
+										<div class="form-group">
+											<label for="productname">Ürün Adını Giriniz</label>
+											<input type="text" class="form-control" asp-for="ProductName" id="productname">
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="price">Ürün Fiyatını Giriniz</label>
+											<input type="text" class="form-control" asp-for="Price" id="price">
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="Imageurl">Ürün Görselini Giriniz</label>
+											<input type="text" class="form-control" asp-for="Image" id="Imageurl">
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="price">Ürün Kategorisini Giriniz</label>
+											@Html.DropDownListFor(x => x.CategoryID, (List<SelectListItem>)ViewBag.v, new { @class = "form-control" })
+										</div>
+									</div>
+									<div class="card-body">
+										<div class="form-group">
+											<label for="description">Ürün Açıklamasını Giriniz</label>
+											<input type="text" class="form-control" asp-for="ProductDescription" id="description">
+
+										</div>
+									</div>
+									<div class="card-action">
+										<button class="btn btn-success">Ürünü Ekle</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Teknoloji Sayfası  2026</span>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	@await Component.InvokeAsync("_AdminLayoutScriptsComponentPartial")
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+@await Component.InvokeAsync("_UserLayoutDefaultHeadComponentPartial")
+@await Component.InvokeAsync("_UserLayoutDefaultNavbarComponentPartial")
+
+<section class="py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Ödeme Seçenekleri</h2>
+
+        <form method="post" asp-action="Checkout" asp-controller="Cart">
+            <div class="border p-4 rounded bg-light">
+
+                <h4>Ödeme Türü</h4>
+                <div class="form-check">
+                    <input class="form-check-input payment-radio"
+                           type="radio" name="paymentMethod"
+                           value="Kredi Kartı" id="creditCard" checked>
+                    <label class="form-check-label" for="creditCard">
+                        Kredi / Banka Kartı
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input payment-radio"
+                           type="radio" name="paymentMethod"
+                           value="Pay Pal" id="paypal">
+                    <label class="form-check-label" for="paypal">
+                        PayPal
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input payment-radio"
+                           type="radio" name="paymentMethod"
+                           value="Nakit" id="cashOnDelivery">
+                    <label class="form-check-label" for="cashOnDelivery">
+                        Kapıda Ödeme
+                    </label>
+                </div>
+
+                <hr />
+
+                <!-- Taksit Alanı -->
+                <div id="installmentSection" class="mt-3">
+                    <h4>Taksit Sayısı</h4>
+                    <select name="installments" class="form-select mb-3">
+                        <option value="1">Tek Çekim</option>
+                        <option value="2">2 Taksit</option>
+                        <option value="3">3 Taksit</option>
+                        <option value="6">6 Taksit</option>
+                        <option value="9">9 Taksit</option>
+                    </select>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-lg">Ödemeye Devam Et</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>
+
+@await Component.InvokeAsync("_UserLayoutDefaultScriptsComponentPartial")
+
+<script>
+    // ⬇ Sayfa yüklendiğinde ve ödeme türü değiştiğinde taksit alanını kontrol et
+    document.querySelectorAll('.payment-radio').forEach(function(rb) {
+        rb.addEventListener('change', function() {
+            const installmentDiv = document.getElementById('installmentSection');
+
+            // Eğer "Nakit" seçilmişse taksit bölümünü gizle
+            if (this.value === "Nakit") {
+                installmentDiv.style.display = "none";
+            } else {
+                installmentDiv.style.display = "block";
+            }
+        });
+    });
+
+    // Başlangıç olarak doğru hali ayarla
+    window.addEventListener('DOMContentLoaded', () => {
+        const checked = document.querySelector('input[name="paymentMethod"]:checked');
+        if (checked && checked.value === "Nakit") {
+            document.getElementById('installmentSection').style.display = "none";
+        }
+    });
+</script>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ffe0b2, #ffd180, #e1f5fe);
+    }
+</style>
