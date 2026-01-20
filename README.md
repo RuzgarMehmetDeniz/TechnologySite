@@ -13,22 +13,21 @@ Projede, **yapay zeka (AI) destekli müşteri hizmetleri** özelliği de bulunma
 - Kullanıcılar ürünleri kategori bazlı olarak görüntüleyebilir.
 - Ürün detay sayfalarında açıklama, fiyat, görseller yer alır.
 - Ürün filtreleme ve arama işlevleri ile kullanıcı deneyimi artırılır.  
-Bu tarz e-ticaret uygulamalarında ürün ve kategori yönetimi standart bir özellik olarak bulunur.
 
 ### 🧑‍💼 Kullanıcı Deneyimi
 - **Hakkımızda**, **Destek Ekibi**, **Yorumlar** ve **İletişim** sayfaları kullanıcılar için bilgi ve etkileşim sağlar.
 - Kullanıcılar ürünleri değerlendirip yorum bırakabilirler.
 
 ### 🔐 Kimlik Doğrulama & Autorization
-- Kullanıcılar güvenli şekilde **kayıt olabilir, giriş yapabilir ve çıkış yapabilir**.
-- **ASP.NET Identity** kullanılarak kullanıcı verileri güvenli şekilde saklanır.
+- Misafirlerin güvenli şekilde **kayıt olabilir, giriş yapabilir ve çıkış yapabilir**.
+- **ASP.NET Identity** kullanılarak misafirlerin verileri güvenli şekilde saklanır.
 - **Rol tabanlı yetkilendirme** sayesinde normal kullanıcı ile admin erişimi ayrıştırılmıştır. 
 
 ### 🧑‍💻 Admin Paneli
 Projenin en güçlü taraflarından biri kapsamlı **admin panelidir**:
 - Admin, ürün ve kategori ekleme, silme ve güncelleme işlemlerini yapabilir.
 - Admin paneli üzerinden **destek ekibi iletişimlerini yönetebilir** ve site içeriğini kontrol edebilir.
-- Yorumları düzenleme veya silme yetkisi de admin’e verilir.
+- Yorumları düzenleme ve silme yetkisi de admin’e verilir.
 
 ## 🛠️ Kullanılan Teknolojiler
 
