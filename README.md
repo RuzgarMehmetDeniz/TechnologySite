@@ -1,3 +1,51 @@
+
+**TechnologySite**, güncel teknolojik ürünlerin satıldığı, tam özellikli bir e-ticaret web sitesidir.  
+Bu proje, kullanıcıların ürünleri kategorilere göre görüntüleyebildiği, filtreleyebildiği, yorum yapabildiği ve güvenli şekilde kayıt/giriş yaparak alışveriş deneyimi yaşayabildiği bir sistemdir. Ayrıca destek ekibi, hakkımızda ve iletişim sayfaları gibi kullanıcı odaklı bölümler içermektedir.
+
+## 🛍️ Temel Özellikler
+
+### 🛒 Ürün ve Kategori Yönetimi
+- Kullanıcılar ürünleri kategori bazlı olarak görüntüleyebilir.
+- Ürün detay sayfalarında açıklama, fiyat, görseller yer alır.
+- Ürün filtreleme ve arama işlevleri ile kullanıcı deneyimi artırılır.  
+Bu tarz e-ticaret uygulamalarında ürün ve kategori yönetimi standart bir özellik olarak bulunur.
+
+### 🧑‍💼 Kullanıcı Deneyimi
+- **Hakkımızda**, **Destek Ekibi**, **Yorumlar** ve **İletişim** sayfaları kullanıcılar için bilgi ve etkileşim sağlar.
+- Kullanıcılar ürünleri değerlendirip yorum bırakabilirler.
+
+### 🔐 Kimlik Doğrulama & Autorization
+- Kullanıcılar güvenli şekilde **kayıt olabilir, giriş yapabilir ve çıkış yapabilir**.
+- **ASP.NET Identity** kullanılarak kullanıcı verileri güvenli şekilde saklanır.
+- **Rol tabanlı yetkilendirme** sayesinde normal kullanıcı ile admin erişimi ayrıştırılmıştır. 
+
+### 🧑‍💻 Admin Paneli
+Projenin en güçlü taraflarından biri kapsamlı **admin panelidir**:
+- Admin, ürün ve kategori ekleme, silme ve güncelleme işlemlerini yapabilir.
+- Admin paneli üzerinden **destek ekibi iletişimlerini yönetebilir** ve site içeriğini kontrol edebilir.
+- Yorumları düzenleme veya silme yetkisi de admin’e verilir.
+
+## 🛠️ Kullanılan Teknolojiler
+
+- 🧠 **C# / .NET 9 / ASP.NET Core MVC** – Web uygulama çatısı  
+- 🔐 **ASP.NET Core Identity** – Kullanıcı kimlik doğrulama ve yetkilendirme  
+- 📦 **Entity Framework Core** – Veritabanı bağlantı ve ORM  
+- 🔑 **API Key Entegrasyonu** – Dış servislerle güvenli veri iletişimi  
+- 📄 **Razor Views / HTML / CSS / JavaScript** – Etkileşimli frontend  
+- 🗃️ SQL Server / EF Core ile veri yönetimi
+
+Projenin yapısı, MVC deseniyle **modüler**, **okunabilir** ve **sürdürülebilir** bir mimari üzerine kurulmuştur. Örneğin ürün, kategori ve kullanıcı yönetimi gibi işlevler kontrollü ve yeniden kullanılabilir şekilde tasarlanmıştır.
+
+## 💡 Proje Hedefi
+
+Bu proje ile:
+- Kullanıcı dostu ve modern bir **alışveriş sitesi** oluşturuldu.
+- Güvenli kullanıcı yönetimi ve admin kontrol paneli ile uygulama **tam kapsamlı** hale getirildi.
+- Güncel teknolojiler kullanılarak **ölçeklenebilir ve sürdürülebilir** bir backend altyapısı sağlandı.
+
+
+
+
 # ![Anasayfa1](https://github.com/user-attachments/assets/e6dcb8c3-98d1-4791-adc0-a5e32ce3f544)
 # ![Anasayfa2](https://github.com/user-attachments/assets/04d8c2d2-b3a7-40c7-8e2c-0b60ccc198c7)
 # ![Anasayfa4](https://github.com/user-attachments/assets/90e03531-743d-4acf-bb04-0fbbfd8cacaf)
@@ -23,5 +71,9 @@
 # ![Kategorıler2](https://github.com/user-attachments/assets/59b1889d-9b35-47b3-9b7a-a3d77b79e172)
 # ![hakkımızda2](https://github.com/user-attachments/assets/f8ff5707-2dc6-4778-ba5e-e3c1eeab3322)
 # ![Destek2](https://github.com/user-attachments/assets/67966c97-51eb-4ba5-a08b-b5c5c315b957)
+# ![Giriş](https://github.com/user-attachments/assets/a33b6aff-866b-49a0-a7c3-70d96aa4405d)
+# ![Kayıt](https://github.com/user-attachments/assets/9a3c8368-c6e2-4a9c-ab97-57e700922c65)
+# ![Error](https://github.com/user-attachments/assets/b82d5a3f-a2c7-4a70-b0a6-0a12362e6b44)
+
 # ![UstSlıder1](https://github.com/user-attachments/assets/dfb80b6a-9b68-4b26-a165-5bb0a6d11b63)
 # ![Odemeler1](https://github.com/user-attachments/assets/d2c6a16f-6625-4ebd-b347-45c03d62a11f)
