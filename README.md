@@ -1,5 +1,5 @@
 
-**Teknoloji Sitesi**
+## Teknoloji Sitesi
 
 Güncel teknolojik ürünlerin satıldığı, tam özellikli bir e-ticaret web sitesidir.  
 Bu proje, kullanıcıların ürünleri kategorilere göre görüntüleyebildiği, filtreleyebildiği, yorum yapabildiği ve güvenli şekilde kayıt/giriş yaparak alışveriş deneyimi yaşayabildiği bir sistemdir. Ayrıca destek ekibi, hakkımızda ve iletişim sayfaları gibi kullanıcı odaklı bölümler içermektedir.
