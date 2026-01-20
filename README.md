@@ -1,8 +1,13 @@
 
-**TechnologySite**, güncel teknolojik ürünlerin satıldığı, tam özellikli bir e-ticaret web sitesidir.  
+**Teknoloji Sitesi**
+
+Güncel teknolojik ürünlerin satıldığı, tam özellikli bir e-ticaret web sitesidir.  
 Bu proje, kullanıcıların ürünleri kategorilere göre görüntüleyebildiği, filtreleyebildiği, yorum yapabildiği ve güvenli şekilde kayıt/giriş yaparak alışveriş deneyimi yaşayabildiği bir sistemdir. Ayrıca destek ekibi, hakkımızda ve iletişim sayfaları gibi kullanıcı odaklı bölümler içermektedir.
 
 ## 🛍️ Temel Özellikler
+### 🤖 Yapay Zeka Destekli Müşteri Hizmetleri
+
+Projede, **yapay zeka (AI) destekli müşteri hizmetleri** özelliği de bulunmaktadır; bu sayede kullanıcılar site içindeki sık sorulan sorulara, ürün bilgilerine ve destek taleplerine **7/24 akıllı yanıtlar** alabilir, daha hızlı ve etkileşimli bir alışveriş deneyimi yaşayabilirler. Yapay zeka, e-ticaret sitelerinde müşteri desteğini otomatikleştirir ve kullanıcı memnuniyetini artırır.
 
 ### 🛒 Ürün ve Kategori Yönetimi
 - Kullanıcılar ürünleri kategori bazlı olarak görüntüleyebilir.
