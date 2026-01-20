@@ -57,7 +57,6 @@ Bu proje ile:
 # ![Anasayfa5](https://github.com/user-attachments/assets/57db41cc-bb4b-43d2-a8e0-d489f23dec19)
 # ![Anasayfa6](https://github.com/user-attachments/assets/3a5bf0a2-5781-49a2-9a6b-2d2c78993d8d)
 # ![Anasayfa7](https://github.com/user-attachments/assets/d11f7e3d-a32c-48de-8dfb-f97508036748)
-# ![Anasayfa8](https://github.com/user-attachments/assets/a83144b7-b42a-44f1-acb4-7acfd8eab0a0)
 # ![Sepet1](https://github.com/user-attachments/assets/adf6f3cd-522c-4168-8046-e9c8b49c0512)
 # ![Sepet2](https://github.com/user-attachments/assets/157af0d4-310c-41e1-bb22-6ca5ab294737)
 # ![Sepet3](https://github.com/user-attachments/assets/e49f8932-df0e-4413-a24c-b3053c3c4be5)
