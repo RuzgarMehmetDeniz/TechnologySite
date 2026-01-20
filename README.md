@@ -10,18 +10,18 @@ Bu proje, kullanıcıların ürünleri kategorilere göre görüntüleyebildiği
 Projede, **yapay zeka (AI) destekli müşteri hizmetleri** özelliği de bulunmaktadır; bu sayede kullanıcılar site içindeki sık sorulan sorulara, ürün bilgilerine ve destek taleplerine **7/24 akıllı yanıtlar** alabilir, daha hızlı ve etkileşimli bir alışveriş deneyimi yaşayabilirler. Yapay zeka, e-ticaret sitelerinde müşteri desteğini otomatikleştirir ve kullanıcı memnuniyetini artırır.
 
 ### 🛒 Ürün ve Kategori Yönetimi
-- Kullanıcılar ürünleri kategori bazlı olarak görüntüleyebilir.
+- Misafirlerin ürünleri kategori bazlı olarak görüntüleyebilir.
 - Ürün detay sayfalarında açıklama, fiyat, görseller yer alır.
 - Ürün filtreleme ve arama işlevleri ile kullanıcı deneyimi artırılır.  
 
 ### 🧑‍💼 Kullanıcı Deneyimi
 - **Hakkımızda**, **Destek Ekibi**, **Yorumlar** ve **İletişim** sayfaları kullanıcılar için bilgi ve etkileşim sağlar.
-- Kullanıcılar ürünleri değerlendirip yorum bırakabilirler.
+- Misafirlerin ürünleri değerlendirip yorum bırakabilirler.
 
 ### 🔐 Kimlik Doğrulama & Autorization
 - Misafirlerin güvenli şekilde **kayıt olabilir, giriş yapabilir ve çıkış yapabilir**.
 - **ASP.NET Identity** kullanılarak misafirlerin verileri güvenli şekilde saklanır.
-- **Rol tabanlı yetkilendirme** sayesinde normal kullanıcı ile admin erişimi ayrıştırılmıştır. 
+- **Rol tabanlı yetkilendirme** sayesinde normal misafirler ile admin erişimi ayrıştırılmıştır. 
 
 ### 🧑‍💻 Admin Paneli
 Projenin en güçlü taraflarından biri kapsamlı **admin panelidir**:
